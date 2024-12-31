@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Sinh viên";
+}
+
+@model IEnumerable<_7485_NguyenVanHien.Models.ListSinhVienVm>;
+<div style="padding:4px 0px 4px 4px;float:right;">
+    <a asp-controller="Home" asp-action="Create" class="btn btn-primary" style="font-size:14px">
+        Add Student
+    </a>
+</div>
+<table class="table" style="border:solid 1px;font-size:13px">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="border:solid 1px;font-size:13px">Mã sinh viên</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Họ tên</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Giới tính</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Ngày sinh</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Hình</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Mã ngành</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Edit</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Details</th>
+            <th scope="col" style="border:solid 1px;font-size:13px">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr maNV=@team.MaSV>
+                <td style="border:solid 1px;font-size:13px">
+                    @team.MaSV
+                </td>
+                <td style="border:solid 1px;font-size:13px">@team.HoTen</td>
+                <td style="border:solid 1px;font-size:13px">@team.GioiTinh</td>
+                <td style="border:solid 1px;font-size:13px">@team.NgaySinh.ToString("dd/MM/yyyy")</td>
+                <td style="border:solid 1px;font-size:13px;width: 200px; height: 200px;">
+                    @if (!string.IsNullOrEmpty(team.Hinh))
+                    {
+                        <img src="@Url.Content("~/Content/images/" + team.Hinh)" style="width: 200px; height: 200px;" alt="Hình sinh viên" />
+                    }
+                </td>
+                <td style="border:solid 1px;font-size:13px">@team.MaNganh</td>
+                <td style="border:solid 1px;font-size:13px;text-align :center">
+                    <a href="@Url.Action("Edit", "Home", new { MaSV=@team.MaSV })">
+                        <span class="fa fa-edit" style="color:blue;font-size:18px"></span>
+                    </a>
+                </td>
+                <td style="border:solid 1px;font-size:13px;text-align :center">
+                    <a href="@Url.Action("Details", "Home", new { MaSV=@team.MaSV })">
+                        <span class="fa fa-tag" style="color:green;font-size:18px"></span>
+                    </a>
+                </td>
+                <td style="border:solid 1px;font-size:13px;text-align :center">
+                    <a href="@Url.Action("Delete", "Home", new { MaSV=@team.MaSV })">
+                        <span class="fa fa-trash" style="color:red;font-size:18px;"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

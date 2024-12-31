@@ -1,0 +1,66 @@
+﻿@model _7485_NguyenVanHien.Models.Entities.SinhVien;
+<div class="input-group mb-3" style="padding: 0 10px;text-align:center">
+    @if (@TempData["Message"] != null)
+    {
+        <label style="color:red;">@TempData["Message"]</label>
+    }
+</div>
+<div class="row pb-2" style="padding: 15px 15px 0 0">
+    <h4 class="text-primary" style="font-size:18px">Sửa thông tin sinh viên</h4>
+</div>
+<form method="post" asp-controller="Home" asp-action="Edit" enctype="multipart/form-data">
+    <div class="input-group mb-3" style="padding: 0 10px;text-align:center">
+        @if (@TempData["Message"] != null)
+        {
+            <label style="color:red;">@TempData["Message"]</label>
+        }
+    </div>
+    <div class="row pb-2">
+        <h4 class="text-primary" style="font-size:18px">Sửa sinh viên</h4>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Mã sinh viên <span style="color:red">(*)</span></label>
+            <input asp-for="MaSV" class="form-control" type="text" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>Họ tên <span style="color:red">(*)</span></label>
+            <input asp-for="HoTen" class="form-control" type="text" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>Giới tính</label>
+            <select asp-for="GioiTinh" class="form-control">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Ngày sinh <span style="color:red">(*)</span></label>
+            <input asp-for="NgaySinh" class="form-control" type="date" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>Hình</label>
+            <input asp-for="Hinh" class="form-control" type="text" />
+            <input asp-for="Hinh" class="form-control" type="file" />
+            @if (!string.IsNullOrEmpty(Model.Hinh))
+            {
+                <div>
+                    <img src="@Url.Content("~/Content/images/" + Model.Hinh)" alt="Hình sinh viên" width="100" />
+                </div>
+            }
+            <span asp-validation-for="Hinh" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Mã ngành</label>
+            <select asp-for="MaNganh" class="form-control" asp-items="ViewBag.StudiesList">
+            </select>
+        </div>
+    </div>
+    <div style="margin-top:20px">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+            Quay lại
+        </a>
+    </div>
+</form>
+

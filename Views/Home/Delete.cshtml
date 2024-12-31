@@ -1,0 +1,39 @@
+﻿@model _7485_NguyenVanHien.Models.Entities.SinhVien;
+<div class="row pb-2" style="padding: 15px 15px 0 0">
+    <h4 class="text-primary" style="font-size:18px">Xóa sinh viên</h4>
+</div>
+<form method="post" asp-controller="Home" asp-action="Delete">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label style="font-weight : bold">Mã sinh viên</label>
+            <input asp-for="MaSV" class="form-control" type="text" />
+        </div>
+        <div class="form-group col-md-6">
+            <label style="font-weight : bold">Họ tên</label>
+            <label class="form-control">@Model.HoTen</label>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="font-weight : bold">Giới tính</label>
+            <label class="form-control">@Model.GioiTinh</label>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="font-weight : bold">Ngày sinh</label>
+            <label class="form-control">@Model.NgaySinh</label>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="font-weight : bold">Hình</label>
+            <label class="form-control">@Model.Hinh</label>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="font-weight : bold">Mã ngành</label>
+            <label class="form-control">@Model.MaNganh</label>
+        </div>
+    </div>
+    <div style="margin-top:20px">
+        <button type="submit" class="btn btn-primary">Xóa</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+            Quay lại
+        </a>
+    </div>
+</form>
+
